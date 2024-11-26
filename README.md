@@ -5,6 +5,11 @@ Another `simple` and `easy to use` unified build tool for JavaScript/TypeScript 
 ## ✨ Features
 
 - ⚔️ Multi-builder, current use `rollup` + `swc`, `esbuild` is coming soon☝️
+- 🀄️ Automatically lookup your `package.json` and `tsconfig.json` to generate:
+  - 🔪 `input/entry` options from `package.json` `main`/`exports` fields
+  - 🔪 `output` options from `package.json` `main`/`exports` fields
+  - 🔪 `external` dependencies from `package.json` `dependencies`/`peerDependencies`/`devDependencies`/`optionalDependencies` fields
+  - 🔪 `alias` paths options from `tsconfig.json`'s `compilerOptions.paths` field
 - 🚀 Support `.vue` file out of box, built-in `postcss plugin` and support for `.vue` files, good👌
 - 👍 Support `d.ts` file generation, use `rollup-plugin-dts` to generate `d.ts` files. We also can generate `.vue` file's `.d.ts` file, start writing component libraries has never been easier😉
 
