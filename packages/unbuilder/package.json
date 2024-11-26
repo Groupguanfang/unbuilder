@@ -1,0 +1,50 @@
+{
+  "name": "unbuilder",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Build a project with one tool",
+  "author": "Naily Zero <zero@naily.cc> (https://naily.cc)",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "unbuilder": "./dist/bin.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "watch": "tsup -w"
+  },
+  "dependencies": {
+    "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-swc": "^0.4.0",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "@rollup/pluginutils": "^5.1.3",
+    "@swc/core": "^1.9.3",
+    "@types/lodash-es": "^4.17.12",
+    "c12": "^2.0.1",
+    "defu": "^6.1.4",
+    "esbuild": "^0.24.0",
+    "kleur": "^4.1.5",
+    "lodash-es": "^4.17.21",
+    "rollup": "^4.27.4",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tsup": "^8.3.0",
+    "type-fest": "4.28.0",
+    "typescript": "^5.6.3",
+    "unplugin-vue": "^5.1.5",
+    "vue-tsc": "^2.1.10"
+  }
+}

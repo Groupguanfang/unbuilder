@@ -1,0 +1,36 @@
+{
+  "name": "rollup",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Naily Zero <zero@naily.cc> (https://naily.cc)",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./test": {
+      "types": "./dist/test.d.ts",
+      "import": "./dist/test.js",
+      "require": "./dist/test.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "unbuilder"
+  },
+  "dependencies": {
+    "less": "^4.2.1",
+    "unbuilder": "workspace:*",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.0"
+  }
+}

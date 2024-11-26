@@ -1,0 +1,21 @@
+<script setup lang="tsx">
+import { ref } from 'vue'
+
+export interface TestCompProps {
+  msg2: string
+}
+
+defineProps<TestCompProps>()
+
+const msg = ref('Hello world')
+</script>
+
+<template>
+  <div>Hello world, {{ msg }}</div>
+</template>
+
+<style scoped lang="less">
+.test {
+  color: red;
+}
+</style>
