@@ -1,0 +1,5 @@
+---
+"unbuilder": patch
+---
+
+fix: deps
