@@ -1,5 +1,11 @@
 # unbuilder
 
+## 0.0.13
+
+### Patch Changes
+
+- 907ad4e: feat: add version logger
+
 ## 0.0.12
 
 ### Patch Changes
