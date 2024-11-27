@@ -3,8 +3,13 @@
 import type { BuilderConfig } from './types'
 import { cwd } from 'node:process'
 import { loadConfig } from 'c12'
+import k from 'kleur'
+import { version } from '../package.json'
 import { build } from './loader'
+import { log } from './logger'
 import { defineConfig } from './types'
+
+log(`version: ${k.dim(version)}`)
 
 loadConfig<any>({
   name: 'unbuilder',
