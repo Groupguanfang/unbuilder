@@ -1,5 +1,11 @@
 # unbuilder
 
+## 0.0.10
+
+### Patch Changes
+
+- 4fdd73e: fix: minify release files
+
 ## 0.0.9
 
 ### Patch Changes
