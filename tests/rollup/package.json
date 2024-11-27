@@ -1,7 +1,7 @@
 {
   "name": "test-rollup",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": true,
   "author": "Naily Zero <zero@naily.cc> (https://naily.cc)",
   "exports": {

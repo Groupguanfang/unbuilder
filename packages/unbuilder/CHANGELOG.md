@@ -1,5 +1,11 @@
 # unbuilder
 
+## 0.0.6
+
+### Patch Changes
+
+- 69d6475: feat: release
+
 ## 0.0.5
 
 ### Patch Changes
