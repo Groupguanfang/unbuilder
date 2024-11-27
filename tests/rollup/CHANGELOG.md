@@ -1,5 +1,12 @@
 # rollup
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies [4d40d16]
+  - unbuilder@0.0.7
+
 ## 0.0.5
 
 ### Patch Changes

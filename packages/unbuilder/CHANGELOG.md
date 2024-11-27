@@ -1,5 +1,11 @@
 # unbuilder
 
+## 0.0.7
+
+### Patch Changes
+
+- 4d40d16: feat: add bin header
+
 ## 0.0.6
 
 ### Patch Changes
