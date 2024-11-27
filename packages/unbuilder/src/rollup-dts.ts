@@ -72,8 +72,6 @@ async function runVueTsc(input: InputOption): Promise<VueTscRunnerReturn> {
 async function resolveDtsConfig(config: RollupDtsBuilderConfig): Promise<RollupOptions> {
   const options = config.rollupOptions || {}
 
-  options.treeshake = false
-
   // 装载入口分析器
   if (config.entryExtractor !== false) {
     const analyzedEntry = PackageJsonEntry(

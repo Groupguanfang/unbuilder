@@ -67,7 +67,7 @@ importers:
         version: 0.4.0(@swc/core@1.9.3)(rollup@4.27.4)
       '@rollup/plugin-typescript':
         specifier: ^12.1.1
-        version: 12.1.1(rollup@4.27.4)(tslib@2.8.1)(typescript@5.7.2)
+        version: 12.1.1(rollup@4.27.4)(tslib@2.8.1)(typescript@5.6.3)
       '@rollup/pluginutils':
         specifier: ^5.1.3
         version: 5.1.3(rollup@4.27.4)
@@ -100,25 +100,25 @@ importers:
         version: 4.27.4
       rollup-plugin-dts:
         specifier: ^6.1.1
-        version: 6.1.1(rollup@4.27.4)(typescript@5.7.2)
+        version: 6.1.1(rollup@4.27.4)(typescript@5.6.3)
       rollup-plugin-postcss:
         specifier: ^4.0.2
         version: 4.0.2(postcss@8.4.49)
       tsup:
         specifier: ^8.3.0
-        version: 8.3.5(@swc/core@1.9.3)(jiti@2.4.0)(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.6.1)
+        version: 8.3.5(@swc/core@1.9.3)(jiti@2.4.0)(postcss@8.4.49)(tsx@4.19.2)(typescript@5.6.3)(yaml@2.6.1)
       type-fest:
         specifier: 4.28.0
         version: 4.28.0
       typescript:
-        specifier: ^5.6.3
-        version: 5.7.2
+        specifier: 5.6.3
+        version: 5.6.3
       unplugin-vue:
         specifier: ^5.1.5
-        version: 5.1.5(@types/node@22.9.3)(less@4.2.1)(vue@3.5.13(typescript@5.7.2))
+        version: 5.1.5(@types/node@22.9.3)(less@4.2.1)(vue@3.5.13(typescript@5.6.3))
       vue-tsc:
         specifier: ^2.1.10
-        version: 2.1.10(typescript@5.7.2)
+        version: 2.1.10(typescript@5.6.3)
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -4440,11 +4440,11 @@ snapshots:
     optionalDependencies:
       rollup: 4.27.4
 
-  '@rollup/plugin-typescript@12.1.1(rollup@4.27.4)(tslib@2.8.1)(typescript@5.7.2)':
+  '@rollup/plugin-typescript@12.1.1(rollup@4.27.4)(tslib@2.8.1)(typescript@5.6.3)':
     dependencies:
       '@rollup/pluginutils': 5.1.3(rollup@4.27.4)
       resolve: 1.22.8
-      typescript: 5.7.2
+      typescript: 5.6.3
     optionalDependencies:
       rollup: 4.27.4
       tslib: 2.8.1
@@ -4806,19 +4806,6 @@ snapshots:
     optionalDependencies:
       typescript: 5.6.3
 
-  '@vue/language-core@2.1.10(typescript@5.7.2)':
-    dependencies:
-      '@volar/language-core': 2.4.10
-      '@vue/compiler-dom': 3.5.13
-      '@vue/compiler-vue2': 2.7.16
-      '@vue/shared': 3.5.13
-      alien-signals: 0.2.2
-      minimatch: 9.0.5
-      muggle-string: 0.4.1
-      path-browserify: 1.0.1
-    optionalDependencies:
-      typescript: 5.7.2
-
   '@vue/reactivity@3.5.13':
     dependencies:
       '@vue/shared': 3.5.13
@@ -4834,6 +4821,12 @@ snapshots:
       '@vue/runtime-core': 3.5.13
       '@vue/shared': 3.5.13
       csstype: 3.1.3
+
+  '@vue/server-renderer@3.5.13(vue@3.5.13(typescript@5.6.3))':
+    dependencies:
+      '@vue/compiler-ssr': 3.5.13
+      '@vue/shared': 3.5.13
+      vue: 3.5.13(typescript@5.6.3)
 
   '@vue/server-renderer@3.5.13(vue@3.5.13(typescript@5.7.2))':
     dependencies:
@@ -6931,11 +6924,11 @@ snapshots:
       '@rolldown/binding-win32-ia32-msvc': 0.14.0
       '@rolldown/binding-win32-x64-msvc': 0.14.0
 
-  rollup-plugin-dts@6.1.1(rollup@4.27.4)(typescript@5.7.2):
+  rollup-plugin-dts@6.1.1(rollup@4.27.4)(typescript@5.6.3):
     dependencies:
       magic-string: 0.30.13
       rollup: 4.27.4
-      typescript: 5.7.2
+      typescript: 5.6.3
     optionalDependencies:
       '@babel/code-frame': 7.26.2
 
@@ -7303,7 +7296,8 @@ snapshots:
 
   typescript@5.6.3: {}
 
-  typescript@5.7.2: {}
+  typescript@5.7.2:
+    optional: true
 
   ufo@1.5.4: {}
 
@@ -7330,13 +7324,13 @@ snapshots:
 
   universalify@0.1.2: {}
 
-  unplugin-vue@5.1.5(@types/node@22.9.3)(less@4.2.1)(vue@3.5.13(typescript@5.7.2)):
+  unplugin-vue@5.1.5(@types/node@22.9.3)(less@4.2.1)(vue@3.5.13(typescript@5.6.3)):
     dependencies:
       '@vue/reactivity': 3.5.13
       debug: 4.3.7
       unplugin: 1.16.0
       vite: 5.4.11(@types/node@22.9.3)(less@4.2.1)
-      vue: 3.5.13(typescript@5.7.2)
+      vue: 3.5.13(typescript@5.6.3)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -7455,12 +7449,15 @@ snapshots:
       semver: 7.6.3
       typescript: 5.6.3
 
-  vue-tsc@2.1.10(typescript@5.7.2):
+  vue@3.5.13(typescript@5.6.3):
     dependencies:
-      '@volar/typescript': 2.4.10
-      '@vue/language-core': 2.1.10(typescript@5.7.2)
-      semver: 7.6.3
-      typescript: 5.7.2
+      '@vue/compiler-dom': 3.5.13
+      '@vue/compiler-sfc': 3.5.13
+      '@vue/runtime-dom': 3.5.13
+      '@vue/server-renderer': 3.5.13(vue@3.5.13(typescript@5.6.3))
+      '@vue/shared': 3.5.13
+    optionalDependencies:
+      typescript: 5.6.3
 
   vue@3.5.13(typescript@5.7.2):
     dependencies:
