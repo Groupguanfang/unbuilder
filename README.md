@@ -77,6 +77,8 @@ export default defineConfig([
 ])
 ```
 
+You can see how simple the configuration items are no matter where they are declared, cool!😎
+
 ## Custom configuration
 
 If the basic rollup preset does not meet your requirements, you can customize the configuration in the `unbuilder.config.ts`:
