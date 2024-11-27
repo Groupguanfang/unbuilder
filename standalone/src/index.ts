@@ -1,9 +1,10 @@
-import { CommonFunc1 } from './common-func'
+import { foo } from './test'
+import testComp, { type TestCompProps } from './test-comp.vue'
 
-export function HelloWord(): string {
-  return 'Hello World'
+export function test(): string {
+  return foo
 }
 
-export function HelloWord2(): string {
-  return CommonFunc1()
-}
+export * from './nest-dir/hello-nest-file-2'
+
+export { foo, testComp, type TestCompProps }

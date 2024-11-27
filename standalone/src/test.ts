@@ -1,15 +1,5 @@
-import CommonComp from './common-comp.vue'
-import { CommonFunc1 } from './common-func'
+const foo: string = 'bar'
 
-export function TestWorld(): string {
-  return 'TestWorld'
-}
+export * from './nest-dir/nest-dir-2/hello-nest-file'
 
-export function Foo(): { CommonFunc1: string, CommonComp: typeof CommonComp } {
-  return {
-    CommonFunc1: CommonFunc1(),
-    CommonComp,
-  }
-}
-
-export { CommonComp }
+export { foo }
