@@ -9,7 +9,7 @@ Another `simple` and `easy to use` unified build tool for JavaScript/TypeScript 
   - 🔪 `rollup-dts`: `stable`
   - 🔪 `esbuild`: `developing`
   - 🔪 `rolldown`: `experimental`, not recommended for production.
-- 🀄️ Automatically lookup your `package.json` and `tsconfig.json` to generate:
+- 🀄️ Default automatically lookup your `package.json` and `tsconfig.json` to generate:
   - 🔪 `input/entry` options from `package.json` `main`/`exports` fields
   - 🔪 `output` options from `package.json` `main`/`exports` fields
   - 🔪 `external` dependencies from `package.json` `dependencies`/`peerDependencies`/`devDependencies`/`optionalDependencies` fields
