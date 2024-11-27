@@ -4,7 +4,11 @@ Another `simple` and `easy to use` unified build tool for JavaScript/TypeScript 
 
 ## ✨ Features
 
-- ⚔️ Multi-builder, current use `rollup` + `swc`, `esbuild` is coming soon☝️
+- ⚔️ Multi-builder, current use `rollup` + `swc`, `esbuild` & `rolldown` is coming soon☝️ Currently builders status:
+  - `rollup` + `swc`/`tsc`: `stable`
+  - `rollup-dts`: `stable`
+  - `esbuild`: `developing`
+  - `rolldown`: `experimental`, not recommended for production.
 - 🀄️ Automatically lookup your `package.json` and `tsconfig.json` to generate:
   - 🔪 `input/entry` options from `package.json` `main`/`exports` fields
   - 🔪 `output` options from `package.json` `main`/`exports` fields
@@ -58,9 +62,20 @@ When you create a new project, you will create a `src` directory, write your pro
 
 By default, `rollup` builder will use `swc` to transpile the code, and `rollup-dts` builder will use `dts-bundle-generator` to generate `d.ts` files.
 
+If you don't want to write in package.json, you can also write the configuration in the `unbuilder.config.ts` file:
+
+```ts
+import { defineConfig } from 'unbuilder'
+
+export default defineConfig([
+  'rollup',
+  'rollup-dts'
+])
+```
+
 ## Custom configuration
 
-If the basic rollup preset does not meet your requirements, you can customize the configuration in the `unbuilder.config.ts` file.
+If the basic rollup preset does not meet your requirements, you can customize the configuration in the `unbuilder.config.ts`:
 
 ```ts
 import { defineConfig } from 'unbuilder'
