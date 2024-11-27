@@ -1,5 +1,11 @@
 # unbuilder
 
+## 0.0.9
+
+### Patch Changes
+
+- 0731260: fix: treeshake
+
 ## 0.0.8
 
 ### Patch Changes

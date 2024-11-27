@@ -1,5 +1,0 @@
----
-"unbuilder": patch
----
-
-fix: treeshake
