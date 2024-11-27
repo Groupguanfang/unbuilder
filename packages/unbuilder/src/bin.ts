@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import type { BuilderConfig } from './types'
 import { cwd } from 'node:process'
 import { loadConfig } from 'c12'
