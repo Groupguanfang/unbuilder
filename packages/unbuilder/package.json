@@ -1,7 +1,7 @@
 {
   "name": "unbuilder",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Build a project with one tool",
   "author": "Naily Zero <zero@naily.cc> (https://naily.cc)",
   "exports": {
@@ -39,7 +39,7 @@
     "kleur": "^4.1.5",
     "lodash-es": "^4.17.21",
     "rolldown": "^0.14.0",
-    "rollup": "4.27.4",
+    "rollup": "0.0.2",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-postcss": "^4.0.2",
     "tsup": "^8.3.0",
