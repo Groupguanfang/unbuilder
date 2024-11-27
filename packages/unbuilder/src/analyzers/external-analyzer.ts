@@ -10,7 +10,11 @@ export function PackageJsonExternal(type: 'deps' | 'excludes', builder: BuilderC
   const packageJson = readPackageJson()
 
   if (type === 'deps') {
-    return (id: string) => Object.keys(packageJson.dependencies || {}).includes(id)
+    return (id: string) => {
+      const result = Object.keys(packageJson.dependencies || {}).includes(id)
+      logWithBuilder(builder, 'auto determined external:', JSON.stringify(result))
+      return result
+    }
   }
 
   const peerDeps = packageJson.peerDependencies || {}
