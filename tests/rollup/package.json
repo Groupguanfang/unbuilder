@@ -23,7 +23,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rolldown -c rolldown.config.mjs"
+    "build": "unbuilder"
   },
   "dependencies": {
     "less": "^4.2.1",
