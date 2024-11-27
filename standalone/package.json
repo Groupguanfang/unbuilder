@@ -27,6 +27,6 @@
     ]
   },
   "dependencies": {
-    "unbuilder": "^0.0.6"
+    "unbuilder": "^0.0.7"
   }
 }

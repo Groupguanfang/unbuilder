@@ -5,8 +5,11 @@ export function TestWorld(): string {
   return 'TestWorld'
 }
 
-export function Foo(): string {
-  return CommonFunc1()
+export function Foo(): { CommonFunc1: string, CommonComp: typeof CommonComp } {
+  return {
+    CommonFunc1: CommonFunc1(),
+    CommonComp,
+  }
 }
 
 export { CommonComp }
