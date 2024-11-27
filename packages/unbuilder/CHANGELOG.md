@@ -1,5 +1,11 @@
 # unbuilder
 
+## 0.0.11
+
+### Patch Changes
+
+- dfecfd4: feat: update external log
+
 ## 0.0.10
 
 ### Patch Changes
