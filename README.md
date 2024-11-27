@@ -1,5 +1,9 @@
 # 📦 unbuilder
 
+![npm](https://img.shields.io/npm/v/unbuilder)
+![commit-activity](https://img.shields.io/github/commit-activity/m/groupguanfang/unbuilder)
+![last-commit](https://img.shields.io/github/last-commit/groupguanfang/unbuilder)
+
 Another `simple` and `easy to use` unified build tool for JavaScript/TypeScript projects.
 
 ## ✨ Features
