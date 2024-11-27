@@ -4,6 +4,7 @@ import type { RollupTypescriptOptions } from '@rollup/plugin-typescript'
 import type { FilterPattern } from '@rollup/pluginutils'
 import type { Options as SWCOptions } from '@swc/core'
 import type { BuildOptions } from 'esbuild'
+import type { InputOptions, OutputOptions } from 'rolldown'
 import type { RollupOptions } from 'rollup'
 import type { Options as DtsOptions } from 'rollup-plugin-dts'
 import type { PostCSSPluginConf } from 'rollup-plugin-postcss'
@@ -122,7 +123,43 @@ export interface RollupDtsBuilderConfig extends CommonBuilderConfigBase {
   rollupOptions?: RollupOptions
 }
 
-export type BuilderConfig = CommonBuilderConfig | RollupDtsBuilderConfig | EsbuildBuilderConfig | RollupBuilderConfig
+export interface RolldownOptions extends InputOptions {
+  output?: OutputOptions | OutputOptions[]
+}
+
+export interface RolldownBuilderConfig extends CommonBuilderConfigBase {
+  /**
+   * Currently rolldown is experimental and may not work as expected.
+   */
+  builder: 'rolldown'
+  /**
+   * Specify the base rolldown options.
+   */
+  rolldownOptions?: RolldownOptions
+  /**
+   * Specify the resolve options for the builder.
+   */
+  resolve?: Omit<InputOptions['resolve'], 'alias'>
+  /**
+   * PostCSS plugin options. If set to `false`, the postcss plugin will be disabled.
+   *
+   * `[WARNING]!` Currently rolldown cannot support `extract: true` option, will throw an error like:
+   * ```bash
+   * node:internal/process/promises:391
+   * triggerUncaughtException;
+   * ^
+   *
+   * [Error: Rolldown internal error: GenericFailure, TypeError: Cannot read properties of null (reading 'importedIds')] {
+   *  code: 'GenericFailure'
+   * }
+   * ```
+   *
+   * @default {}
+   */
+  postcss?: PostCSSPluginConf | false
+}
+
+export type BuilderConfig = CommonBuilderConfig | RollupDtsBuilderConfig | EsbuildBuilderConfig | RollupBuilderConfig | RolldownBuilderConfig
 export type BuilderConfigType = Exclude<BuilderConfig['builder'], 'common'>
 
 export function defineConfig(config: Arrayable<BuilderConfig | BuilderConfigType>): Arrayable<BuilderConfig> {

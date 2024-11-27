@@ -5,6 +5,11 @@ import path from 'node:path'
 import { logWithBuilder } from '../logger'
 import { readEntryInfo, readPackageJson } from '../utils'
 
+export type OutputAnalyzerOptions = Omit<OutputOptions, 'format' | 'assetFileNames' | 'globals'> & {
+  format: 'esm' | 'cjs'
+  assetFileNames: string
+}
+
 function buildOutputOptions(mixed: OutputOptions): OutputOptions {
   function getFormatExtension(format: ModuleFormat): 'cjs' | 'mjs' {
     switch (format) {
@@ -30,7 +35,7 @@ function buildOutputOptions(mixed: OutputOptions): OutputOptions {
   }
 }
 
-export function OutputAnalyzer(baseOptions: OutputOptions = {}, builder: BuilderConfigType): OutputOptions[] {
+export function OutputAnalyzer(baseOptions: OutputOptions = {}, builder: BuilderConfigType): OutputAnalyzerOptions[] {
   const packageJson = readPackageJson()
   const entryInfo = readEntryInfo(packageJson)
   const result: OutputOptions[] = []
@@ -109,5 +114,5 @@ export function OutputAnalyzer(baseOptions: OutputOptions = {}, builder: Builder
     format: item.format,
   }))))
 
-  return result
+  return result as OutputAnalyzerOptions[]
 }

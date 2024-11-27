@@ -4,6 +4,25 @@ import path from 'node:path'
 import { logWithBuilder } from '../logger'
 import { readTsConfigCompilerOptions } from '../utils'
 
+export function AliasAnalyzer(builder: BuilderConfigType): Record<string, string> {
+  const compilerOptions = readTsConfigCompilerOptions()
+  const result: Record<string, string> = {}
+
+  for (const [key, value] of Object.entries(compilerOptions.paths)) {
+    if (!value[0])
+      continue
+
+    const alias = key.replace(/\/\*$/, '')
+    const replacement = (value[0] || '').replace(/\/\*$/, '')
+
+    result[alias] = path.resolve(replacement)
+  }
+
+  logWithBuilder(builder, 'auto determined aliases:', JSON.stringify(result))
+
+  return result
+}
+
 export function RollupAliasAnalyzer(builder: BuilderConfigType): Alias[] {
   const compilerOptions = readTsConfigCompilerOptions()
   const result: Alias[] = []

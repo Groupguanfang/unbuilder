@@ -80,12 +80,7 @@ async function resolveDtsConfig(config: RollupDtsBuilderConfig): Promise<RollupO
     )
     if (!Array.isArray(options.input) && typeof options.input === 'string')
       options.input = analyzedEntry
-    else {
-      options.input = {
-        ...analyzedEntry,
-        ...options.input,
-      }
-    }
+    else options.input = { ...analyzedEntry, ...options.input }
   }
 
   // 装载输出分析器

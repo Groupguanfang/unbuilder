@@ -81,6 +81,7 @@ export function resolveRollupConfig(config: RollupBuilderConfig): RollupOptions 
   if (!Array.isArray(options.plugins))
     options.plugins = [options.plugins]
 
+  // ------------------- FileInfo -------------------
   options.plugins.push(FileInfo('rollup'))
 
   // ------------------- Resolve ---------------------
@@ -155,10 +156,10 @@ export function resolveRollupConfig(config: RollupBuilderConfig): RollupOptions 
 
 export async function buildWithRollup(config: RollupBuilderConfig): Promise<void> {
   const options = resolveRollupConfig(config)
-
-  const rollupBuild = await rollup(options)
   if (!options.output)
     return
+
+  const rollupBuild = await rollup(options)
 
   if (!Array.isArray(options.output)) {
     await rollupBuild.write(options.output)

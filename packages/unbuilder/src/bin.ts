@@ -10,13 +10,25 @@ loadConfig<any>({
   globalRc: true,
   cwd: cwd(),
 }).then(async (result) => {
-  const configuration = defineConfig(
+  let configuration = defineConfig(
     Array.isArray(result.config)
       ? result.config
       : (result.config && result.config.config)
           ? result.config.config
           : result.config,
   )
+
+  if (Array.isArray(result.layers) && result.layers.find(layer => layer.configFile === 'unbuilder.config')) {
+    const findLayer = result.layers.find(layer => layer.configFile === 'unbuilder.config')
+
+    configuration = defineConfig(
+      Array.isArray(findLayer.config)
+        ? findLayer.config
+        : (findLayer.config && findLayer.config.config)
+            ? findLayer.config.config
+            : findLayer.config,
+    )
+  }
 
   if (!Array.isArray(configuration)) {
     return build(configuration as BuilderConfig)
