@@ -1,5 +1,11 @@
 # unbuilder
 
+## 0.0.12
+
+### Patch Changes
+
+- 23afe1e: feat: add version export
+
 ## 0.0.11
 
 ### Patch Changes
