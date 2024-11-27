@@ -1,5 +1,11 @@
 # unbuilder
 
+## 0.0.5
+
+### Patch Changes
+
+- c8356d7: fix: typescript version
+
 ## 0.0.4
 
 ### Patch Changes
