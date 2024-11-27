@@ -12,7 +12,6 @@ export function PackageJsonExternal(type: 'deps' | 'excludes', builder: BuilderC
   if (type === 'deps') {
     return (id: string) => {
       const result = Object.keys(packageJson.dependencies || {}).includes(id)
-      logWithBuilder(builder, 'auto determined external:', JSON.stringify(result))
       return result
     }
   }
