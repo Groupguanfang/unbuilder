@@ -40,6 +40,7 @@ export function useEachImportDeclarations(sourceFiles: SourceFile[], options: Dt
       const moduleSpecifier = callExpression.getArguments()[0]
       if (!moduleSpecifier)
         return
+
       const moduleSpecifierValue = moduleSpecifier.getText().replace(/['"`]/g, '')
       const absoluteImportPath = path.resolve(path.dirname(currentSourceFile.getFilePath()), moduleSpecifierValue)
       const importedSourceFile = getSourceFileFromImport(
