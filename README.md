@@ -10,7 +10,8 @@ Another `simple` and `easy to use` unified build tool for JavaScript/TypeScript 
 
 - ⚔️ Multi-builder, current use `rollup` + `swc`, `esbuild` & `rolldown` is coming soon☝️ Currently builders status:
   - 🔪 `rollup` + `swc`/`tsc`: `stable`
-  - 🔪 `rollup-dts`: `stable`
+  - 🔪 `rollup-dts`: `deprecated` use `bundle-dts-generator` instead.
+  - 🔪 `bundle-dts-generator`: `stable`
   - 🔪 `esbuild`: `developing`
   - 🔪 `rolldown`: `experimental`, not recommended for production.
 - 🌎️ Default automatically lookup your `package.json` and `tsconfig.json` to generate:
@@ -57,8 +58,8 @@ When you create a new project, you will create a `src` directory, write your pro
     "config": [
       // `rollup` is mean to use rollup to build
       "rollup",
-      // `rollup-dts` is mean to use rollup to generate `d.ts` files
-      "rollup-dts"
+      // `bundle-dts-generator` is mean to generate `d.ts` files
+      "bundle-dts-generator"
     ]
   }
 }
@@ -73,7 +74,7 @@ import { defineConfig } from 'unbuilder'
 
 export default defineConfig([
   'rollup',
-  'rollup-dts'
+  'bundle-dts-generator'
 ])
 ```
 
@@ -93,9 +94,9 @@ export default defineConfig([
     rollupOptions: {}
   },
   {
-    builder: 'rollup-dts',
-    // rollup-dts config
-    rollupOptions: {}
+    builder: 'bundle-dts-generator',
+    // bundle-dts-generator config
+    buildOptions: {}
   }
 ])
 ```
