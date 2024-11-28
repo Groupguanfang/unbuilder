@@ -58,7 +58,7 @@ export function useEachImportDeclarations(sourceFiles: SourceFile[], options: Dt
       const project = importDeclaration.getProject()
       const importedSourceFile = importDeclaration.getModuleSpecifierSourceFile()
       // 如果能拿得到sourceFile文件，说明是正常文件，加入到sourceFiles，然后继续递归查找导入的文件。
-      if (importedSourceFile) {
+      if (importedSourceFile && !importedSourceFile.isInNodeModules() && !importedSourceFile.isFromExternalLibrary()) {
         sourceFiles.push(importedSourceFile)
         return ctx.eachImportDeclarations(importedSourceFile)
       }
