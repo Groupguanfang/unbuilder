@@ -1,5 +1,6 @@
 {
   "name": "test-dts",
+  "private": true,
   "scripts": {
     "build": "tsx ./build.ts"
   },
