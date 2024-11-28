@@ -1,5 +1,13 @@
 # unbuilder
 
+## 0.0.14
+
+### Patch Changes
+
+- e964fa3: feat: add bundle-dts-generator in unbuilder
+- Updated dependencies [e964fa3]
+  - bundle-dts-generator@0.0.3
+
 ## 0.0.13
 
 ### Patch Changes
