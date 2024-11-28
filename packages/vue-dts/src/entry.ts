@@ -2,6 +2,7 @@ import type { Project, SourceFile } from 'ts-morph'
 import type { DtsBuildOptions } from './types'
 import fs from 'node:fs'
 import path from 'node:path'
+import glob from 'fast-glob'
 
 export interface EntryService {
   getEntry: (cache?: boolean) => string[]
@@ -73,8 +74,13 @@ export function useEntry(options: DtsBuildOptions, project: Project, init: boole
 
       // Add include files to project.
       for (const i in include) {
-        if (!project.getSourceFile(include[i]))
-          sourceFiles.push(project.addSourceFileAtPath(include[i]))
+        const globFiles = glob.sync(include[i])
+        for (const j in globFiles) {
+          if (!project.getSourceFile(globFiles[j])) {
+            const currentSourceFile = project.addSourceFileAtPath(globFiles[j])
+            sourceFiles.push(currentSourceFile)
+          }
+        }
       }
 
       return include

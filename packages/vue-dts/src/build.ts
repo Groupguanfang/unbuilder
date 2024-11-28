@@ -1,3 +1,4 @@
+import type ts from 'typescript'
 import type { DtsBuildOptions } from './types'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -57,7 +58,7 @@ export async function build(options: DtsBuildOptions = {}): Promise<void> {
   const emittedEntryFilePath = await emitCacheService.emit(options)
 
   // 使用`rollup`打包`.d.ts`文件
-  useRollup(emittedEntryFilePath, project.getCompilerOptions()).run(options)
+  useRollup(emittedEntryFilePath, project.getCompilerOptions() as ts.CompilerOptions).run(options)
 
   // 工作结束，清理缓存文件夹
   process.on('exit', async () => {

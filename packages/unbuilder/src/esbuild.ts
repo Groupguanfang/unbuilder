@@ -9,7 +9,10 @@ export async function buildWithEsbuild(config: EsbuildBuilderConfig): Promise<vo
 
   // 装载入口分析器
   if (config.entryExtractor !== false)
-    options.entryPoints = PackageJsonEntry(typeof config.entryExtractor === 'string' ? config.entryExtractor : './src')
+    options.entryPoints = PackageJsonEntry(
+      typeof config.entryExtractor === 'string' ? config.entryExtractor : './src',
+      config.builder,
+    )
 
   // 默认开启bundle模式
   if (typeof options.bundle !== 'boolean')
@@ -19,7 +22,7 @@ export async function buildWithEsbuild(config: EsbuildBuilderConfig): Promise<vo
     options.treeShaking = true
   // 装载外部依赖分析器
   if (options.bundle !== false && !options.external)
-    options.external = PackageJsonExternal('excludes')
+    options.external = PackageJsonExternal('excludes', config.builder)
 
   // Fix一下esbuild的插件配置
   if (!options.plugins)

@@ -77,6 +77,9 @@ importers:
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
+      bundle-dts-generator:
+        specifier: workspace:*
+        version: link:../vue-dts
       c12:
         specifier: ^2.0.1
         version: 2.0.1
@@ -134,6 +137,9 @@ importers:
       '@vue/compiler-sfc':
         specifier: ^3.5.13
         version: 3.5.13
+      fast-glob:
+        specifier: ^3.3.2
+        version: 3.3.2
       kleur:
         specifier: ^4.1.5
         version: 4.1.5
@@ -146,6 +152,9 @@ importers:
       ts-morph:
         specifier: ^24.0.0
         version: 24.0.0
+      typescript:
+        specifier: ^5.7.2
+        version: 5.7.2
     devDependencies:
       tsup:
         specifier: ^8.3.0

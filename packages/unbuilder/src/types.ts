@@ -3,6 +3,7 @@ import type { RollupNodeResolveOptions } from '@rollup/plugin-node-resolve'
 import type { RollupTypescriptOptions } from '@rollup/plugin-typescript'
 import type { FilterPattern } from '@rollup/pluginutils'
 import type { Options as SWCOptions } from '@swc/core'
+import type { DtsBuildOptions } from 'bundle-dts-generator'
 import type { BuildOptions } from 'esbuild'
 import type { InputOptions, OutputOptions } from 'rolldown'
 import type { RollupOptions } from 'rollup'
@@ -159,7 +160,13 @@ export interface RolldownBuilderConfig extends CommonBuilderConfigBase {
   postcss?: PostCSSPluginConf | false
 }
 
-export type BuilderConfig = CommonBuilderConfig | RollupDtsBuilderConfig | EsbuildBuilderConfig | RollupBuilderConfig | RolldownBuilderConfig
+export interface BundleDtsGeneratorBuilderConfig extends CommonBuilderConfigBase {
+  builder: 'bundle-dts-generator'
+
+  buildOptions?: DtsBuildOptions
+}
+
+export type BuilderConfig = CommonBuilderConfig | BundleDtsGeneratorBuilderConfig | RollupDtsBuilderConfig | EsbuildBuilderConfig | RollupBuilderConfig | RolldownBuilderConfig
 export type BuilderConfigType = Exclude<BuilderConfig['builder'], 'common'>
 
 export function defineConfig(config: Arrayable<BuilderConfig | BuilderConfigType>): Arrayable<BuilderConfig> {

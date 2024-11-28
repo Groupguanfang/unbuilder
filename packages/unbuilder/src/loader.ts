@@ -1,4 +1,5 @@
 import type { BuilderConfig, CommonBuilderConfig } from './types'
+import { buildDtsWithBundleDtsGenerator } from './bundle-dts-generator'
 import { buildWithEsbuild } from './esbuild'
 import { buildWithRolldown } from './rolldown'
 import { buildWithRollup } from './rollup'
@@ -23,5 +24,8 @@ export async function build(builderConfig: BuilderConfig, commonBuildConfig?: Co
   }
   else if (builderConfig.builder === 'rolldown') {
     await buildWithRolldown(builderConfig)
+  }
+  else if (builderConfig.builder === 'bundle-dts-generator') {
+    await buildDtsWithBundleDtsGenerator(builderConfig)
   }
 }
