@@ -1,0 +1,35 @@
+{
+  "name": "bundle-dts-generator",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "A d.ts generator but supporting .vue files ⚡️",
+  "author": "Naily Zero <zero@naily.cc> (https://naily.cc)",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "watch": "tsup -w"
+  },
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@vue/compiler-sfc": "^3.5.13",
+    "kleur": "^4.1.5",
+    "rollup": "^4.27.4",
+    "rollup-plugin-dts": "^6.1.1",
+    "ts-morph": "^24.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.0"
+  }
+}

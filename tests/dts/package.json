@@ -1,0 +1,9 @@
+{
+  "name": "test-dts",
+  "scripts": {
+    "build": "tsx ./build.ts"
+  },
+  "dependencies": {
+    "bundle-dts-generator": "workspace:*"
+  }
+}

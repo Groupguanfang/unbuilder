@@ -104,6 +104,9 @@ importers:
       rollup-plugin-postcss:
         specifier: ^4.0.2
         version: 4.0.2(postcss@8.4.49)
+      ts-morph:
+        specifier: ^24.0.0
+        version: 24.0.0
       tsup:
         specifier: ^8.3.0
         version: 8.3.5(@swc/core@1.9.3)(jiti@2.4.0)(postcss@8.4.49)(tsx@4.19.2)(typescript@5.6.3)(yaml@2.6.1)
@@ -122,6 +125,37 @@ importers:
       zod:
         specifier: ^3.23.8
         version: 3.23.8
+
+  packages/vue-dts:
+    dependencies:
+      '@rollup/plugin-node-resolve':
+        specifier: ^15.3.0
+        version: 15.3.0(rollup@4.27.4)
+      '@vue/compiler-sfc':
+        specifier: ^3.5.13
+        version: 3.5.13
+      kleur:
+        specifier: ^4.1.5
+        version: 4.1.5
+      rollup:
+        specifier: ^4.27.4
+        version: 4.27.4
+      rollup-plugin-dts:
+        specifier: ^6.1.1
+        version: 6.1.1(rollup@4.27.4)(typescript@5.7.2)
+      ts-morph:
+        specifier: ^24.0.0
+        version: 24.0.0
+    devDependencies:
+      tsup:
+        specifier: ^8.3.0
+        version: 8.3.5(@swc/core@1.9.3)(jiti@2.4.0)(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.6.1)
+
+  tests/dts:
+    dependencies:
+      bundle-dts-generator:
+        specifier: workspace:*
+        version: link:../../packages/vue-dts
 
   tests/rollup:
     dependencies:
@@ -1144,6 +1178,9 @@ packages:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
 
+  '@ts-morph/common@0.25.0':
+    resolution: {integrity: sha512-kMnZz+vGGHi4GoHnLmMhGNjm44kGtKUXGnOvrKmMwAuvNjM/PgKVGfUnL7IDvK7Jb2QQ82jq3Zmp04Gy+r3Dkg==}
+
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
 
@@ -1544,6 +1581,9 @@ packages:
   cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
+
+  code-block-writer@13.0.3:
+    resolution: {integrity: sha512-Oofo0pq3IKnsFtuHqSF7TqBfr71aeyZDVJ0HpmqB7FBM2qEigL0iPONSCZSO9pE9dZTAxANe5XHG9Uy0YMv8cg==}
 
   color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
@@ -3468,6 +3508,9 @@ packages:
   ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
+  ts-morph@24.0.0:
+    resolution: {integrity: sha512-2OAOg/Ob5yx9Et7ZX4CvTCc0UFoZHwLEJ+dpDPSUi5TgwwlTlX47w+iFRrEwzUZwYACjq83cgjS/Da50Ga37uw==}
+
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
@@ -4607,6 +4650,12 @@ snapshots:
 
   '@trysound/sax@0.2.0': {}
 
+  '@ts-morph/common@0.25.0':
+    dependencies:
+      minimatch: 9.0.5
+      path-browserify: 1.0.1
+      tinyglobby: 0.2.10
+
   '@tybys/wasm-util@0.9.0':
     dependencies:
       tslib: 2.8.1
@@ -4809,7 +4858,7 @@ snapshots:
       '@vue/compiler-ssr': 3.5.13
       '@vue/shared': 3.5.13
       estree-walker: 2.0.2
-      magic-string: 0.30.13
+      magic-string: 0.30.14
       postcss: 8.4.49
       source-map-js: 1.2.1
 
@@ -5079,6 +5128,8 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
+
+  code-block-writer@13.0.3: {}
 
   color-convert@2.0.1:
     dependencies:
@@ -6963,6 +7014,14 @@ snapshots:
     optionalDependencies:
       '@babel/code-frame': 7.26.2
 
+  rollup-plugin-dts@6.1.1(rollup@4.27.4)(typescript@5.7.2):
+    dependencies:
+      magic-string: 0.30.13
+      rollup: 4.27.4
+      typescript: 5.7.2
+    optionalDependencies:
+      '@babel/code-frame': 7.26.2
+
   rollup-plugin-postcss@4.0.2(postcss@8.4.49):
     dependencies:
       chalk: 4.1.2
@@ -7246,6 +7305,11 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
+  ts-morph@24.0.0:
+    dependencies:
+      '@ts-morph/common': 0.25.0
+      code-block-writer: 13.0.3
+
   tslib@2.8.1: {}
 
   tsup@8.3.5(@swc/core@1.9.3)(jiti@2.4.0)(postcss@8.4.49)(tsx@4.19.2)(typescript@5.6.3)(yaml@2.6.1):
@@ -7327,8 +7391,7 @@ snapshots:
 
   typescript@5.6.3: {}
 
-  typescript@5.7.2:
-    optional: true
+  typescript@5.7.2: {}
 
   ufo@1.5.4: {}
 
