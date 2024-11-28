@@ -1,5 +1,11 @@
 # bundle-dts-generator
 
+## 0.0.4
+
+### Patch Changes
+
+- 568400c: fix: remove node modules
+
 ## 0.0.3
 
 ### Patch Changes

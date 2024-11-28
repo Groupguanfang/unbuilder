@@ -1,5 +1,12 @@
 # unbuilder
 
+## 0.0.15
+
+### Patch Changes
+
+- Updated dependencies [568400c]
+  - bundle-dts-generator@0.0.4
+
 ## 0.0.14
 
 ### Patch Changes
