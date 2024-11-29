@@ -1,5 +1,15 @@
 # unbuilder
 
+## 0.0.19
+
+### Patch Changes
+
+- 65587a5: feat: update readme
+- 025038f: feat(unbuilder): add vite-lib-mode
+- 47c8b41: fix: build function param typing
+- Updated dependencies [65587a5]
+  - bundle-dts-generator@0.0.7
+
 ## 0.0.18
 
 ### Patch Changes
