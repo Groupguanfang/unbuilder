@@ -1,5 +1,11 @@
 # bundle-dts-generator
 
+## 0.0.6
+
+### Patch Changes
+
+- fbc9fba: chore: remove 'rollup-dts' builder, add time counter
+
 ## 0.0.5
 
 ### Patch Changes
