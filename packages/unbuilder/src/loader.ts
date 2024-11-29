@@ -5,7 +5,7 @@ import { buildWithRolldown } from './rolldown'
 import { buildWithRollup } from './rollup'
 import { buildWithTsup } from './tsup'
 
-export async function build(builderConfig: BuilderConfig, commonBuildConfig?: CommonBuilderConfig): Promise<void> {
+export async function build(builderConfig: Exclude<BuilderConfig, CommonBuilderConfig>, commonBuildConfig?: CommonBuilderConfig): Promise<void> {
   if (commonBuildConfig && typeof commonBuildConfig === 'object') {
     builderConfig = {
       ...commonBuildConfig,
