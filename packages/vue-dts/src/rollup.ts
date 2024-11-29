@@ -42,8 +42,7 @@ export function useRollup(input: string[], compilerOptions: CompilerOptions): Ro
 
       const rollupBuild = await rollup(rollupOptions)
       if (Array.isArray(rollupOptions.output))
-        for (const outputOptions of rollupOptions.output)
-          await rollupBuild.write(outputOptions)
+        await Promise.all(rollupOptions.output.map(output => rollupBuild.write(output)))
       else
         await rollupBuild.write(rollupOptions.output)
     },

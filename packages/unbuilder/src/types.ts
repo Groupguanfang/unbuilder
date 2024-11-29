@@ -7,7 +7,6 @@ import type { DtsBuildOptions } from 'bundle-dts-generator'
 import type { BuildOptions } from 'esbuild'
 import type { InputOptions, OutputOptions } from 'rolldown'
 import type { RollupOptions } from 'rollup'
-import type { Options as DtsOptions } from 'rollup-plugin-dts'
 import type { PostCSSPluginConf } from 'rollup-plugin-postcss'
 import type { Arrayable } from 'type-fest'
 import type RollupVue from 'unplugin-vue/rollup'
@@ -117,13 +116,6 @@ export interface RollupBuilderConfig extends CommonBuilderConfigBase {
   rollupOptions?: RollupOptions
 }
 
-export interface RollupDtsBuilderConfig extends CommonBuilderConfigBase {
-  builder: 'rollup-dts'
-  resolve?: RollupBuilderResolveOptions | false
-  dtsOptions?: DtsOptions
-  rollupOptions?: RollupOptions
-}
-
 export interface RolldownOptions extends InputOptions {
   output?: OutputOptions | OutputOptions[]
 }
@@ -166,7 +158,7 @@ export interface BundleDtsGeneratorBuilderConfig extends CommonBuilderConfigBase
   buildOptions?: DtsBuildOptions
 }
 
-export type BuilderConfig = CommonBuilderConfig | BundleDtsGeneratorBuilderConfig | RollupDtsBuilderConfig | EsbuildBuilderConfig | RollupBuilderConfig | RolldownBuilderConfig
+export type BuilderConfig = CommonBuilderConfig | BundleDtsGeneratorBuilderConfig | EsbuildBuilderConfig | RollupBuilderConfig | RolldownBuilderConfig
 export type BuilderConfigType = Exclude<BuilderConfig['builder'], 'common'>
 
 export function defineConfig(config: Arrayable<BuilderConfig | BuilderConfigType>): Arrayable<BuilderConfig> {

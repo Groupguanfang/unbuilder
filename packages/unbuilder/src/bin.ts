@@ -17,6 +17,8 @@ loadConfig<any>({
   globalRc: true,
   cwd: cwd(),
 }).then(async (result) => {
+  const currentTime = Date.now()
+
   let configuration = defineConfig(
     Array.isArray(result.config)
       ? result.config
@@ -38,11 +40,19 @@ loadConfig<any>({
   }
 
   if (!Array.isArray(configuration)) {
-    return build(configuration as BuilderConfig)
+    await build(configuration as BuilderConfig)
   }
   else {
-    return Promise.all(configuration.map((config: BuilderConfig) =>
+    await Promise.all(configuration.map((config: BuilderConfig) =>
       build(config, configuration.find((c: BuilderConfig) => (c || {}).builder === 'common') || { builder: 'common' })),
     )
   }
+
+  function formatTime(time: number): string {
+    return time < 1000
+      ? `${time}ms`
+      : `${(time / 1000).toFixed(2)}s`
+  }
+
+  log(`✨Done in ${formatTime(Date.now() - currentTime)}.`)
 })

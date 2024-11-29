@@ -5,7 +5,7 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import k from 'kleur'
 
-export default function FileInfo(builder: 'rollup' | 'rollup-dts'): Plugin
+export default function FileInfo(builder: 'rollup'): Plugin
 export default function FileInfo(builder: 'rolldown'): RolldownPlugin
 export default function FileInfo(builder: BuilderConfigType): RolldownPlugin | Plugin {
   return {
