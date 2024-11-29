@@ -8,7 +8,7 @@ Another `simple` and `easy to use` unified build tool for JavaScript/TypeScript 
 
 ## ✨ Features
 
-- ⚔️ Multi-builder, current use `rollup` + `swc`, `esbuild` & `rolldown` is coming soon☝️ Currently builders status:
+- ⚔️ Multi-builder support:
   - 🔪 `rollup` + `swc`/`tsc`: `stable`
   - 🔪 `bundle-dts-generator`: `stable`
   - 🔪 `tsup`: `stable`
