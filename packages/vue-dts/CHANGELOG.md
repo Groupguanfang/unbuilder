@@ -1,5 +1,11 @@
 # bundle-dts-generator
 
+## 0.0.5
+
+### Patch Changes
+
+- 6ae4504: feat(bundle-dts-generator): add export detected
+
 ## 0.0.4
 
 ### Patch Changes
