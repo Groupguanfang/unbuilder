@@ -1,5 +1,6 @@
 import type { EsbuildBuilderConfig } from './types'
 import path from 'node:path'
+import PostCSS from '@chialab/esbuild-plugin-postcss'
 import { build } from 'esbuild'
 import EsBuildVue from 'unplugin-vue/esbuild'
 import { PackageJsonEntry } from './analyzers/entry-analyzer'
@@ -8,12 +9,12 @@ import { PackageJsonExternal } from './analyzers/external-analyzer'
 export function EsbuildVuePlugin(mixed: Parameters<typeof EsBuildVue>[0] = {}): ReturnType<typeof EsBuildVue> {
   return EsBuildVue({
     ...mixed,
-    style: {
-      // eslint-disable-next-line ts/ban-ts-comment
-      // @ts-expect-error
-      preprocessLang: 'less',
-      ...((mixed || {}).style || {}),
-    },
+  })
+}
+
+export function PostCSSPlugin(mixed: Parameters<typeof PostCSS>[0] = {}): ReturnType<typeof PostCSS> {
+  return PostCSS({
+    ...mixed,
   })
 }
 

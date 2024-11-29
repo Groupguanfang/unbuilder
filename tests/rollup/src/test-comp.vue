@@ -2,6 +2,9 @@
 import { ref } from 'vue'
 
 export interface TestCompProps {
+  /**
+   * Message.
+   */
   msg2: string
 }
 

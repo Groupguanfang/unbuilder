@@ -1,6 +1,6 @@
 import { defineConfig } from 'unbuilder'
 
 export default defineConfig([
-  'tsup',
+  'vite-lib-mode',
   'bundle-dts-generator',
 ])

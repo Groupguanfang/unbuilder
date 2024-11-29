@@ -12,6 +12,7 @@ Another `simple` and `easy to use` unified build tool for JavaScript/TypeScript 
   - 🔪 `rollup` + `swc`/`tsc`: `stable`
   - 🔪 `bundle-dts-generator`: `stable`
   - 🔪 `tsup`: `stable`
+  - 🔪 `vite-lib-mode`: `stable`
   - 🔪 `esbuild`: `stable`, but since tsup is based on esbuild, if you use this builder, you might as well use tsup (OAQ?)
   - 🔪 `rolldown`: `experimental`, not recommended for production.
 - 🌎️ Default automatically lookup your `package.json` and `tsconfig.json` to generate:

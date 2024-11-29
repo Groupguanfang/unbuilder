@@ -109,10 +109,7 @@ export function resolveRollupConfig(config: RollupBuilderConfig): RollupOptions 
   if (typeof config.vue !== 'boolean' && typeof config.vue !== 'object')
     config.vue = true
   if (config.vue !== false) {
-    if (typeof config.vue === 'object')
-      options.plugins.push(RollupVue(config.vue))
-    else if (config.vue === true)
-      options.plugins.push(RollupVue())
+    options.plugins.push(RollupVue(typeof config.vue === 'object' ? config.vue : {}))
   }
 
   // ------------------- PostCSS -------------------

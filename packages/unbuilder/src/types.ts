@@ -1,8 +1,10 @@
+import type { PluginOptions as EsbuildPostCSSOptions } from '@chialab/esbuild-plugin-postcss'
 import type { RollupCommonJSOptions } from '@rollup/plugin-commonjs'
 import type { RollupNodeResolveOptions } from '@rollup/plugin-node-resolve'
 import type { RollupTypescriptOptions } from '@rollup/plugin-typescript'
 import type { FilterPattern } from '@rollup/pluginutils'
 import type { Options as SWCOptions } from '@swc/core'
+import type { SFCStyleCompileOptions } from '@vue/compiler-sfc'
 import type { DtsBuildOptions } from 'bundle-dts-generator'
 import type { BuildOptions } from 'esbuild'
 import type { InputOptions, OutputOptions } from 'rolldown'
@@ -11,6 +13,7 @@ import type { PostCSSPluginConf } from 'rollup-plugin-postcss'
 import type { Options as TsupOptions } from 'tsup'
 import type { Arrayable } from 'type-fest'
 import type RollupVue from 'unplugin-vue/rollup'
+import type { InlineConfig } from 'vite'
 
 export interface CommonBuilderConfigBase {
   /**
@@ -45,7 +48,9 @@ export interface CommonBuilderConfigBase {
    * @note In `rollup-dts` builder, will use `vue-tsc` to generate `.d.ts` files.
    * @default true
    */
-  vue?: Parameters<typeof RollupVue>[0] | boolean
+  vue?: Omit<Exclude<Parameters<typeof RollupVue>[0], undefined>, 'style'> & {
+    style?: Partial<SFCStyleCompileOptions>
+  } | boolean
   /**
    * Extra alias for the builder.
    *
@@ -167,9 +172,22 @@ export interface TsupBuilderConfig extends CommonBuilderConfigBase {
    * The base options for `tsup`.
    */
   tsupOptions?: TsupOptions
+  postcss?: EsbuildPostCSSOptions | false
 }
 
-export type BuilderConfig = CommonBuilderConfig | BundleDtsGeneratorBuilderConfig | TsupBuilderConfig | EsbuildBuilderConfig | RollupBuilderConfig | RolldownBuilderConfig
+export interface ViteLibModeBuilderConfig extends CommonBuilderConfigBase {
+  builder: 'vite-lib-mode'
+  viteOptions?: InlineConfig
+}
+
+export type BuilderConfig = CommonBuilderConfig
+  | BundleDtsGeneratorBuilderConfig
+  | TsupBuilderConfig
+  | EsbuildBuilderConfig
+  | RollupBuilderConfig
+  | RolldownBuilderConfig
+  | ViteLibModeBuilderConfig
+
 export type BuilderConfigType = Exclude<BuilderConfig['builder'], 'common'>
 
 export function defineConfig(config: Arrayable<BuilderConfig | BuilderConfigType>): Arrayable<BuilderConfig> {

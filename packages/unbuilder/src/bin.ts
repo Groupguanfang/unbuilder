@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import type { BuilderConfig } from './types'
+import type { BuilderConfig, CommonBuilderConfig } from './types'
 import { cwd } from 'node:process'
 import { loadConfig } from 'c12'
 import k from 'kleur'
@@ -40,11 +40,19 @@ loadConfig<any>({
   }
 
   if (!Array.isArray(configuration)) {
-    await build(configuration as BuilderConfig)
+    await build(configuration as Exclude<BuilderConfig, CommonBuilderConfig>)
   }
   else {
-    await Promise.all(configuration.map((config: BuilderConfig) =>
+    // 先把 vite-lib-mode 的先跑 因为会干扰到 bundle-dts-generator 等的生成
+    await Promise.all(configuration.filter((config: Exclude<BuilderConfig, CommonBuilderConfig>) =>
+      config.builder === 'vite-lib-mode',
+    ).map(config =>
       build(config, configuration.find((c: BuilderConfig) => (c || {}).builder === 'common') || { builder: 'common' })),
+    )
+    await Promise.all(configuration
+      .filter((config: Exclude<BuilderConfig, CommonBuilderConfig>) => config.builder !== 'vite-lib-mode')
+      .map((config: Exclude<BuilderConfig, CommonBuilderConfig>) =>
+        build(config, configuration.find((c: BuilderConfig) => (c || {}).builder === 'common') || { builder: 'common' })),
     )
   }
 

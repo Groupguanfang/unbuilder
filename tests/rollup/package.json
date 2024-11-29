@@ -14,6 +14,11 @@
       "types": "./dist/test.d.ts",
       "import": "./dist/test.js",
       "require": "./dist/test.cjs"
+    },
+    "./test-style": {
+      "types": "./dist/test-style.css",
+      "import": "./dist/test-style.css",
+      "require": "./dist/test-style.css"
     }
   },
   "main": "./dist/index.cjs",

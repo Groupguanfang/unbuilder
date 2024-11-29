@@ -4,6 +4,7 @@ import { buildWithEsbuild } from './esbuild'
 import { buildWithRolldown } from './rolldown'
 import { buildWithRollup } from './rollup'
 import { buildWithTsup } from './tsup'
+import { buildWithViteLibMode } from './vite-lib-mode'
 
 export async function build(builderConfig: Exclude<BuilderConfig, CommonBuilderConfig>, commonBuildConfig?: CommonBuilderConfig): Promise<void> {
   if (commonBuildConfig && typeof commonBuildConfig === 'object') {
@@ -27,5 +28,8 @@ export async function build(builderConfig: Exclude<BuilderConfig, CommonBuilderC
   }
   else if (builderConfig.builder === 'tsup') {
     await buildWithTsup(builderConfig)
+  }
+  else if (builderConfig.builder === 'vite-lib-mode') {
+    await buildWithViteLibMode(builderConfig)
   }
 }

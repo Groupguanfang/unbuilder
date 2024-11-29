@@ -1,7 +1,7 @@
 import type { TsupBuilderConfig } from './types'
 import { build } from 'tsup'
 import { PackageJsonEntry } from './analyzers'
-import { EsbuildVuePlugin } from './esbuild'
+import { EsbuildVuePlugin, PostCSSPlugin } from './esbuild'
 
 export async function buildWithTsup(config: TsupBuilderConfig): Promise<void> {
   const options = config.tsupOptions || {}
@@ -30,12 +30,19 @@ export async function buildWithTsup(config: TsupBuilderConfig): Promise<void> {
   )
     options.dts = true
 
+  if (!options.esbuildPlugins)
+    options.esbuildPlugins = []
+
+  // ------------------- PostCSS ---------------------
+  if (typeof config.postcss !== 'boolean' && typeof config.postcss !== 'object')
+    config.postcss = {}
+  if (config.postcss !== false)
+    options.esbuildPlugins.push(PostCSSPlugin(config.postcss))
+
   // ------------------- Vue Files -------------------
   if (config.vue !== false) {
     // 因为tsup不支持生成.vue文件的dts文件，请用`bundle-dts-generator`代替
     options.dts = false
-    if (!options.esbuildPlugins)
-      options.esbuildPlugins = []
     options.esbuildPlugins.push(EsbuildVuePlugin(typeof config.vue === 'object' ? config.vue : {}))
   }
   // 默认生成esm和cjs格式
