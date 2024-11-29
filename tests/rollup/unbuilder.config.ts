@@ -1,6 +1,6 @@
 import { defineConfig } from 'unbuilder'
 
 export default defineConfig([
-  'rollup',
+  'tsup',
   'bundle-dts-generator',
 ])

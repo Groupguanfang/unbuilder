@@ -3,6 +3,7 @@ import { buildDtsWithBundleDtsGenerator } from './bundle-dts-generator'
 import { buildWithEsbuild } from './esbuild'
 import { buildWithRolldown } from './rolldown'
 import { buildWithRollup } from './rollup'
+import { buildWithTsup } from './tsup'
 
 export async function build(builderConfig: BuilderConfig, commonBuildConfig?: CommonBuilderConfig): Promise<void> {
   if (commonBuildConfig && typeof commonBuildConfig === 'object') {
@@ -23,5 +24,8 @@ export async function build(builderConfig: BuilderConfig, commonBuildConfig?: Co
   }
   else if (builderConfig.builder === 'bundle-dts-generator') {
     await buildDtsWithBundleDtsGenerator(builderConfig)
+  }
+  else if (builderConfig.builder === 'tsup') {
+    await buildWithTsup(builderConfig)
   }
 }

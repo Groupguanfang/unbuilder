@@ -1,8 +1,21 @@
 import type { EsbuildBuilderConfig } from './types'
+import path from 'node:path'
 import { build } from 'esbuild'
 import EsBuildVue from 'unplugin-vue/esbuild'
 import { PackageJsonEntry } from './analyzers/entry-analyzer'
 import { PackageJsonExternal } from './analyzers/external-analyzer'
+
+export function EsbuildVuePlugin(mixed: Parameters<typeof EsBuildVue>[0] = {}): ReturnType<typeof EsBuildVue> {
+  return EsBuildVue({
+    ...mixed,
+    style: {
+      // eslint-disable-next-line ts/ban-ts-comment
+      // @ts-expect-error
+      preprocessLang: 'less',
+      ...((mixed || {}).style || {}),
+    },
+  })
+}
 
 export async function buildWithEsbuild(config: EsbuildBuilderConfig): Promise<void> {
   const options = config.esbuildOptions || {}
@@ -20,9 +33,13 @@ export async function buildWithEsbuild(config: EsbuildBuilderConfig): Promise<vo
   // 默认开启treeShaking
   if (typeof options.treeShaking !== 'boolean')
     options.treeShaking = true
+  if (!options.outdir)
+    options.outdir = path.resolve('dist')
   // 装载外部依赖分析器
   if (options.bundle !== false && !options.external)
-    options.external = PackageJsonExternal('excludes', config.builder)
+    options.external = PackageJsonExternal('deps-array', config.builder)
+  if (!options.format)
+    options.format = 'cjs'
 
   // Fix一下esbuild的插件配置
   if (!options.plugins)
@@ -33,9 +50,9 @@ export async function buildWithEsbuild(config: EsbuildBuilderConfig): Promise<vo
     config.vue = true
   if (config.vue !== false) {
     if (typeof config.vue === 'object')
-      options.plugins.push(EsBuildVue(config.vue))
+      options.plugins.push(EsbuildVuePlugin(config.vue))
     else if (config.vue === true)
-      options.plugins.push(EsBuildVue())
+      options.plugins.push(EsbuildVuePlugin())
   }
 
   await build(options)

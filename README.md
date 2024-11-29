@@ -11,7 +11,8 @@ Another `simple` and `easy to use` unified build tool for JavaScript/TypeScript 
 - ⚔️ Multi-builder, current use `rollup` + `swc`, `esbuild` & `rolldown` is coming soon☝️ Currently builders status:
   - 🔪 `rollup` + `swc`/`tsc`: `stable`
   - 🔪 `bundle-dts-generator`: `stable`
-  - 🔪 `esbuild`: `developing`
+  - 🔪 `tsup`: `stable`
+  - 🔪 `esbuild`: `stable`, but since tsup is based on esbuild, if you use this builder, you might as well use tsup (OAQ?)
   - 🔪 `rolldown`: `experimental`, not recommended for production.
 - 🌎️ Default automatically lookup your `package.json` and `tsconfig.json` to generate:
   - 🔪 `input/entry` options from `package.json` `main`/`exports` fields

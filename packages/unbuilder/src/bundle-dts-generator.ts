@@ -5,6 +5,7 @@ import { PackageJsonEntry } from './analyzers'
 export async function buildDtsWithBundleDtsGenerator(config: BundleDtsGeneratorBuilderConfig): Promise<void> {
   const options = config.buildOptions || {}
 
+  // 装载入口分析器
   const analyzedEntry = PackageJsonEntry(
     typeof config.entryExtractor === 'string' ? config.entryExtractor : './src',
     config.builder,
