@@ -7,13 +7,14 @@ import { Project } from 'ts-morph'
 import { useDefaultCompilerOptions } from './compiler-options'
 import { useEmitPreBundleDts } from './emit-cache'
 import { useEntry } from './entry'
+import { useEachExportDeclarations } from './export-declaration'
 import { useEachImportDeclarations } from './import-declaration'
 import { useRollup } from './rollup'
 
 async function removeCacheDir(project: Project): Promise<void> {
   const cacheOutDir = project.getCompilerOptions().outDir
   if (cacheOutDir && fs.existsSync(cacheOutDir))
-    fs.rmdirSync(cacheOutDir, { recursive: true })
+    await fs.promises.rm(cacheOutDir, { recursive: true })
 }
 
 export async function build(options: DtsBuildOptions = {}): Promise<void> {
@@ -49,13 +50,20 @@ export async function build(options: DtsBuildOptions = {}): Promise<void> {
   )
   // 遍历所有导入声明
   entryService.sourceFiles.forEach(eachImportDeclarationService.eachImportDeclarations)
-
   // 分析动态导入的文件，和上面的静态导入声明一样，遇到`.vue`文件会自动添加`.vue.ts`结尾的文件
   entryService.sourceFiles.forEach(eachImportDeclarationService.eachDynamicImportDeclarations)
 
+  // 收集所有导出声明依赖的文件，和上面的导入声明一样，遇到`.vue`文件会自动添加`.vue.ts`结尾的文件
+  const eachExportDeclarationService = useEachExportDeclarations(
+    entryService.sourceFiles,
+    options,
+  )
+  // 遍历所有导出声明
+  entryService.sourceFiles.forEach(eachExportDeclarationService.eachExportDeclarations)
+
   // 生成`.d.ts`文件
   const emitCacheService = useEmitPreBundleDts(project, entryService)
-  const emittedEntryFilePath = await emitCacheService.emit(options)
+  const emittedEntryFilePath = await emitCacheService.emit(options, entryService.sourceFiles)
 
   // 使用`rollup`打包`.d.ts`文件
   useRollup(emittedEntryFilePath, project.getCompilerOptions() as ts.CompilerOptions).run(options)

@@ -1,5 +1,7 @@
 import test, { Props } from './test.vue'
 
+import './nest-dir'
+
 export const a: string = 'Hello world'
 
 export default test

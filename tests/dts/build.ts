@@ -6,4 +6,6 @@ build({
   ],
 
   outDir: './dist',
+
+  removeCacheDirOnExit: false,
 })

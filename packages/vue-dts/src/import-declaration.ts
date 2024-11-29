@@ -2,6 +2,7 @@ import type { CallExpression, ImportDeclaration, SourceFile } from 'ts-morph'
 import type { DtsBuildOptions } from './types'
 import fs from 'node:fs'
 import path from 'node:path'
+import k from 'kleur'
 import { SyntaxKind } from 'ts-morph'
 import { getSourceFileFromImport, relativeResolve } from './utils'
 import { useVue } from './vue'
@@ -58,24 +59,29 @@ export function useEachImportDeclarations(sourceFiles: SourceFile[], options: Dt
       const currentSourceFile = importDeclaration.getSourceFile()
       const project = importDeclaration.getProject()
       const importedSourceFile = importDeclaration.getModuleSpecifierSourceFile()
-      // 如果能拿得到sourceFile文件，说明是正常文件，加入到sourceFiles，然后继续递归查找导入的文件。
-      if (importedSourceFile && !importedSourceFile.isInNodeModules() && !importedSourceFile.isFromExternalLibrary()) {
+      // 如果能拿得到sourceFile文件而且不是node_modules文件，才加入到sourceFiles中，并且继续递归。
+      if (importedSourceFile && !importedSourceFile.isInNodeModules()) {
         sourceFiles.push(importedSourceFile)
         return ctx.eachImportDeclarations(importedSourceFile)
       }
 
+      // 如果关闭了vue功能，直接结束。
       if (!vueCompiler)
+        return
+
+      /// 如果该导入有sourceFile实例，而且位于node_modules中，直接结束。
+      if (importedSourceFile && importedSourceFile.isInNodeModules())
         return
 
       /// 处理.vue文件。
       const moduleSpecifier = importDeclaration.getModuleSpecifierValue()
       const filePath = path.resolve(path.dirname(currentSourceFile.getFilePath()), moduleSpecifier)
       if (!filePath.endsWith('.vue'))
-        return console.warn(`[bundle-dts-generator] Module specifier "${moduleSpecifier}" in ${relativeResolve(currentSourceFile.getFilePath())} is not a .vue file, ignored.`)
+        return console.warn(`[bundle-dts-generator] Import module specifier "${k.bold(moduleSpecifier)}" in ${relativeResolve(currentSourceFile.getFilePath())} is not a .vue file, ignored.`)
       if (!fs.existsSync(filePath))
-        return console.warn(`[bundle-dts-generator] Module specifier "${moduleSpecifier}" in ${relativeResolve(currentSourceFile.getFilePath())} does not exist, ignored.`)
+        return console.warn(`[bundle-dts-generator] Import module specifier "${k.bold(moduleSpecifier)}" in ${relativeResolve(currentSourceFile.getFilePath())} does not exist, ignored.`)
       if (!fs.statSync(filePath).isFile())
-        return console.warn(`[bundle-dts-generator] Module specifier "${moduleSpecifier}" in ${relativeResolve(currentSourceFile.getFilePath())} is not a file, ignored.`)
+        return console.warn(`[bundle-dts-generator] Import module specifier "${k.bold(moduleSpecifier)}" in ${relativeResolve(currentSourceFile.getFilePath())} is not a file, ignored.`)
 
       const rawVueFileContent = fs.readFileSync(filePath, 'utf-8')
       const sfc = vueCompiler.parse(rawVueFileContent)

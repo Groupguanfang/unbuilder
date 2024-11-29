@@ -74,7 +74,7 @@ export function useEntry(options: DtsBuildOptions, project: Project, init: boole
 
       // Add include files to project.
       for (const i in include) {
-        const globFiles = glob.sync(include[i])
+        const globFiles = glob.sync(include[i], { onlyFiles: true })
         for (const j in globFiles) {
           if (!project.getSourceFile(globFiles[j])) {
             const currentSourceFile = project.addSourceFileAtPath(globFiles[j])

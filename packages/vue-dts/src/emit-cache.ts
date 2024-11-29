@@ -1,4 +1,4 @@
-import type { Project } from 'ts-morph'
+import type { Project, SourceFile } from 'ts-morph'
 import type { EntryService } from './entry'
 import type { DtsBuildOptions } from './types'
 import fs from 'node:fs'
@@ -7,14 +7,12 @@ import k from 'kleur'
 import { fileInfoLog } from './file-info'
 
 export interface EmitPreBundleDtsService {
-  emit: (options: DtsBuildOptions) => Promise<string[]>
+  emit: (options: DtsBuildOptions, sourceFiles: SourceFile[]) => Promise<string[]>
 }
 
 export function useEmitPreBundleDts(project: Project, entryService: EntryService): EmitPreBundleDtsService {
   return {
-    async emit(_options: DtsBuildOptions) {
-      project.emitToMemory()
-      const projectSourceFiles = project.getSourceFiles()
+    async emit(_options: DtsBuildOptions, projectSourceFiles) {
       const entryOutputFilePaths: string[] = []
 
       // 用双层 Promise.all 并发处理所有文件而非for循环，提高性能
