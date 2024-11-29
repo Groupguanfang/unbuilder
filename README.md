@@ -74,7 +74,7 @@ If you don't want to write in package.json, you can also write the configuration
 import { defineConfig } from 'unbuilder'
 
 export default defineConfig([
-  'rollup',
+  'vite-lib-mode',
   'bundle-dts-generator'
 ])
 ```
@@ -90,13 +90,13 @@ import { defineConfig } from 'unbuilder'
 
 export default defineConfig([
   {
-    builder: 'rollup',
-    // rollup config
-    rollupOptions: {}
+    builder: 'vite-lib-mode',
+    // vite config
+    viteOptions: {}
   },
   {
     builder: 'bundle-dts-generator',
-    // bundle-dts-generator config
+    // bundle-dts-generator config, please see definitions
     buildOptions: {}
   }
 ])
